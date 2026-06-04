@@ -596,52 +596,60 @@ footer{
 }
 
 /* =====================================================
-   MALIPAY INDEX — CARTES SLIDE PREMIUM
+   MALIPAY INDEX — CARTES SLIDE PREMIUM CORRIGÉ
 ===================================================== */
+
+.logo-box.malipay-logo{
+  max-width:calc(100vw - 150px);
+  overflow:hidden;
+}
 
 .logo-title{
   display:inline-block;
-  font-weight:1000;
-  background:linear-gradient(90deg,#10224a,#ff9500,#ff3d00,#10224a);
-  background-size:300% 100%;
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
+  padding:7px 16px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#fff,#fff3df,#ffe1b8);
+  color:#10224a;
+  font-weight:950;
+  letter-spacing:.5px;
+  box-shadow:
+    0 10px 25px rgba(255,106,0,.20),
+    inset 0 1px 0 rgba(255,255,255,.9);
   animation:malipayNameMove 4s ease-in-out infinite;
 }
 
 @keyframes malipayNameMove{
-  0%{background-position:0% 50%;transform:translateX(0)}
-  50%{background-position:100% 50%;transform:translateX(10px)}
-  100%{background-position:0% 50%;transform:translateX(0)}
+  0%,100%{transform:translateX(0) scale(1)}
+  50%{transform:translateX(14px) scale(1.04)}
 }
 
-.login-layout{
-  display:block !important;
-  max-width:520px !important;
-  width:100% !important;
-  position:relative;
-  overflow:hidden;
+main{
+  align-items:flex-start !important;
+  padding-top:125px !important;
 }
 
 .cards-slider{
   position:relative;
   width:100%;
-  min-height:620px;
+  max-width:520px;
+  min-height:780px;
+  margin:auto;
+  overflow:visible;
 }
 
 .slide-card{
   position:absolute;
-  inset:0;
+  top:0;
+  left:0;
   width:100%;
   opacity:0;
   pointer-events:none;
-  transform:translateX(100%) scale(.92);
-  transition:
-    transform 3.5s cubic-bezier(.16,1,.3,1),
-    opacity 1.2s ease,
-    filter 1.2s ease;
+  transform:translateX(110%) scale(.94);
   filter:blur(8px);
+  transition:
+    transform 1s ease,
+    opacity .6s ease,
+    filter .6s ease;
 }
 
 .slide-card.active-card{
@@ -653,204 +661,143 @@ footer{
 
 .slide-card.slide-left{
   opacity:0;
-  transform:translateX(-120%) rotate(-8deg) scale(.86);
-  filter:blur(10px);
+  transform:translateX(-115%) scale(.92);
+  filter:blur(8px);
 }
 
 .welcome-panel,
 .login-card{
-  min-height:610px;
+  min-height:auto !important;
+  height:auto !important;
+  text-align:center;
+}
+
+.welcome-panel{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.welcome-panel p{
+  text-align:center;
+  margin:auto;
 }
 
 .swipe-help,
 .back-help{
   margin-top:24px;
-  padding:14px 16px;
-  border-radius:999px;
+  padding:16px;
+  border-radius:24px;
+  background:rgba(255,255,255,.88);
+  border:1px solid rgba(255,255,255,.95);
+  color:#10224a;
   text-align:center;
   font-weight:950;
-  color:white;
-  background:linear-gradient(135deg,#ff9500,#ff6a00,#ff3d00);
-  box-shadow:0 16px 35px rgba(255,100,0,.35);
+  box-shadow:0 16px 35px rgba(10,30,70,.16);
   cursor:pointer;
   user-select:none;
 }
 
 .back-help{
   background:linear-gradient(135deg,#10224a,#1d3b78);
+  color:white;
 }
 
-.welcome-panel{
-  animation:welcomeEntrance 1.1s ease both;
+.swipe-arrows{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  font-size:30px;
+  color:#ff4b00;
 }
 
-@keyframes welcomeEntrance{
-  from{
-    opacity:0;
-    transform:translateY(45px) scale(.9);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0) scale(1);
-  }
+.swipe-arrows span{
+  display:inline-block;
+  animation:arrowLeftMove 1.1s infinite ease-in-out;
 }
 
-.login-card.active-card{
-  animation:loginEntrance 3.5s ease both;
+.swipe-arrows span:nth-child(2){animation-delay:.15s}
+.swipe-arrows span:nth-child(3){animation-delay:.30s}
+
+@keyframes arrowLeftMove{
+  0%{opacity:.25;transform:translateX(20px)}
+  50%{opacity:1;transform:translateX(0)}
+  100%{opacity:.25;transform:translateX(-20px)}
 }
 
-@keyframes loginEntrance{
-  0%{
-    opacity:0;
-    transform:translateX(100%) scale(.92);
-  }
-  60%{
-    opacity:1;
-    transform:translateX(-8px) scale(1.02);
-  }
-  100%{
-    opacity:1;
-    transform:translateX(0) scale(1);
-  }
+.swipe-help p{
+  margin-top:8px;
+  font-size:13px;
+  font-weight:950;
+  color:#10224a;
 }
 
 @media(max-width:520px){
+  main{
+    padding:105px 12px 40px !important;
+  }
+
   .cards-slider{
-    min-height:650px;
+    max-width:100%;
+    min-height:860px;
   }
 
   .welcome-panel,
   .login-card{
-    min-height:640px;
+    padding:22px !important;
+    border-radius:30px !important;
   }
 
-  .logo-title{
-    font-size:23px;
+  .welcome-panel h1{
+    font-size:34px !important;
+    line-height:1.08 !important;
   }
-}
 
-/* ===============================
-   LOGO MALIPAY COMME DASHBOARD
-================================ */
-
-.logo-box.malipay-logo{
-  max-width: calc(100vw - 145px);
-  overflow: hidden;
-}
-
-.logo-title{
-  display: inline-block;
-  padding: 7px 16px;
-  border-radius: 999px;
-  color: #10224a;
-  font-weight: 950;
-  letter-spacing: .5px;
-  background: linear-gradient(135deg,#fff,#fff3df,#ffe1b8);
-  box-shadow:
-    0 10px 25px rgba(255,106,0,.20),
-    inset 0 1px 0 rgba(255,255,255,.9);
-  animation: malipayNameMove 4s ease-in-out infinite;
-}
-
-@keyframes malipayNameMove{
-  0%,100%{
-    transform: translateX(0) scale(1);
+  .welcome-panel p{
+    font-size:14px !important;
+    line-height:1.55 !important;
   }
-  50%{
-    transform: translateX(18px) scale(1.04);
+
+  .features{
+    grid-template-columns:1fr !important;
+    gap:12px !important;
+    width:100%;
   }
-}
 
-/* ===============================
-   INDICATION GLISSER À GAUCHE
-================================ */
-
-.swipe-help{
-  margin-top: 28px;
-  padding: 16px;
-  border-radius: 24px;
-  background: rgba(255,255,255,.78);
-  border: 1px solid rgba(255,255,255,.9);
-  box-shadow: 0 16px 35px rgba(10,30,70,.14);
-  text-align: center;
-  position: relative;
-  z-index: 2;
-}
-
-.swipe-arrows{
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  direction: rtl;
-  font-size: 28px;
-  color: #ff5a00;
-  font-weight: 950;
-}
-
-.swipe-arrows span{
-  display: inline-block;
-  transform: rotate(180deg);
-  animation: arrowLeftMove 1.2s infinite ease-in-out;
-}
-
-.swipe-arrows span:nth-child(2){
-  animation-delay: .15s;
-}
-
-.swipe-arrows span:nth-child(3){
-  animation-delay: .30s;
-}
-
-@keyframes arrowLeftMove{
-  0%{
-    opacity: .25;
-    transform: translateX(18px) rotate(180deg);
+  .feature{
+    min-height:64px !important;
+    padding:14px !important;
   }
-  50%{
-    opacity: 1;
-    transform: translateX(0) rotate(180deg);
-  }
-  100%{
-    opacity: .25;
-    transform: translateX(-18px) rotate(180deg);
-  }
-}
 
-.swipe-help p{
-  margin-top: 8px;
-  color: #10224a;
-  font-size: 13px;
-  font-weight: 950;
-}
-
-/* Mobile */
-@media(max-width:520px){
   .logo-box.malipay-logo{
-    max-width: calc(100vw - 35px);
+    max-width:calc(100vw - 35px);
   }
 
   .logo-title{
-    font-size: 23px;
-    padding: 6px 13px;
+    font-size:22px !important;
+    padding:6px 13px;
   }
 
   @keyframes malipayNameMove{
-    0%,100%{ transform: translateX(0) scale(1); }
-    50%{ transform: translateX(10px) scale(1.03); }
+    0%,100%{transform:translateX(0) scale(1)}
+    50%{transform:translateX(8px) scale(1.03)}
+  }
+}
+
+@media(max-width:360px){
+  .cards-slider{
+    min-height:900px;
   }
 
-  .swipe-help{
-    margin-top: 22px;
-    padding: 14px;
-    border-radius: 21px;
+  .welcome-panel h1{
+    font-size:30px !important;
   }
 
-  .swipe-arrows{
-    font-size: 25px;
-  }
-
-  .swipe-help p{
-    font-size: 12px;
+  .swipe-help,
+  .back-help{
+    padding:13px;
+    border-radius:20px;
   }
 }
 </style>
@@ -919,7 +866,11 @@ SÉCURISÉ
   <p>Glisse la carte vers la gauche pour te connecter</p>
 </div>
 
-    <div class="swipe-help">⬅️ Glisse vers la gauche pour te connecter</div>
+
+
+
+
+
   </section>
 
   <section class="login-card slide-card" id="loginCard">
@@ -960,7 +911,14 @@ SÉCURISÉ
       ✨ Votre argent en sécurité, votre avenir en confiance.
     </div>
 
-    <div class="back-help" onclick="showWelcomeCard()">➡️ Retour à la présentation</div>
+    <div class="back-help" onclick="showWelcomeCard()">
+  <div class="swipe-arrows">
+    <span>➜</span>
+    <span>➜</span>
+    <span>➜</span>
+  </div>
+  <p>Glisse vers la droite pour revenir à la présentation</p>
+</div>
   </section>
 
 </div>
@@ -1338,39 +1296,54 @@ function showLoginCard(){
   welcomeCard.classList.remove("active-card");
   welcomeCard.classList.add("slide-left");
 
+  loginCard.classList.remove("slide-left");
   loginCard.classList.add("active-card");
 }
 
 window.showWelcomeCard = function(){
   loginCard.classList.remove("active-card");
+  loginCard.classList.add("slide-left");
 
   welcomeCard.classList.remove("slide-left");
   welcomeCard.classList.add("active-card");
 };
 
-welcomeCard.addEventListener("touchstart", function(e){
-  startX = e.touches[0].clientX;
-});
+function handleSwipe(card, callback, direction){
+  card.addEventListener("touchstart", e=>{
+    startX = e.touches[0].clientX;
+  });
 
-welcomeCard.addEventListener("touchend", function(e){
-  endX = e.changedTouches[0].clientX;
+  card.addEventListener("touchend", e=>{
+    endX = e.changedTouches[0].clientX;
 
-  if(startX - endX > 80){
-    showLoginCard();
-  }
-});
+    if(direction === "left" && startX - endX > 70){
+      callback();
+    }
 
-welcomeCard.addEventListener("mousedown", function(e){
-  startX = e.clientX;
-});
+    if(direction === "right" && endX - startX > 70){
+      callback();
+    }
+  });
 
-welcomeCard.addEventListener("mouseup", function(e){
-  endX = e.clientX;
+  card.addEventListener("mousedown", e=>{
+    startX = e.clientX;
+  });
 
-  if(startX - endX > 80){
-    showLoginCard();
-  }
-});
+  card.addEventListener("mouseup", e=>{
+    endX = e.clientX;
+
+    if(direction === "left" && startX - endX > 70){
+      callback();
+    }
+
+    if(direction === "right" && endX - startX > 70){
+      callback();
+    }
+  });
+}
+
+handleSwipe(welcomeCard, showLoginCard, "left");
+handleSwipe(loginCard, showWelcomeCard, "right");
 
 
 /* 🔥 ADS FIREBASE */
