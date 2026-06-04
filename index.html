@@ -596,14 +596,19 @@ footer{
 }
 
 /* =====================================================
-   MALIPAY INDEX — CARTES SLIDE PREMIUM FINAL
+   MALI WARI INDEX — CARTES SLIDE PREMIUM FINAL
 ===================================================== */
 
 html, body{
   width:100%;
   min-height:100%;
   overflow-x:hidden !important;
-  touch-action:pan-y;
+  touch-action:auto !important;
+  overscroll-behavior:auto !important;
+}
+
+body{
+  overflow-y:auto !important;
 }
 
 body{
@@ -656,11 +661,33 @@ main{
 
 /* Slider */
 .cards-slider{
-  position:relative;
-  width:100%;
-  max-width:430px;
-  min-height:720px;
-  overflow:visible;
+    position:relative;
+    width:100%;
+    max-width:430px;
+    min-height:auto;
+    overflow:visible;
+}
+
+.slide-card{
+    width:100%;
+}
+
+.slide-card.active-card{
+    position:relative;
+}
+
+.slide-card:not(.active-card){
+    position:absolute;
+}
+
+main{
+    padding-bottom:10px !important;
+}
+
+footer{
+    margin-top:10px !important;
+    margin-bottom:0 !important;
+    padding:12px 10px !important;
 }
 
 /* Cartes */
@@ -673,7 +700,7 @@ main{
   pointer-events:none;
   transform:translateX(110%) scale(.94);
   filter:blur(8px);
-  transition:transform .9s ease, opacity .45s ease, filter .45s ease;
+  transition:transform .38s ease, opacity .25s ease, filter .25s ease;
 }
 
 .slide-card.active-card{
@@ -697,7 +724,19 @@ main{
   padding:24px !important;
   border-radius:32px !important;
   text-align:center;
-  overflow:visible !important;
+  overflow:hidden !important;
+}
+
+.welcome-panel > *,
+.login-card > *{
+  position:relative;
+  z-index:2;
+}
+
+.welcome-panel::after,
+.login-card::before{
+  z-index:1;
+  pointer-events:none;
 }
 
 /* Présentation centrée */
@@ -780,7 +819,8 @@ main{
 
 /* Footer collé proprement */
 footer{
-  margin-top:0 !important;
+  margin-top:14px !important;
+  margin-bottom:0 !important;
   padding:14px 10px !important;
   font-size:13px !important;
   position:relative;
@@ -811,7 +851,7 @@ footer{
 
   .cards-slider{
     max-width:100%;
-    min-height:700px;
+    min-height:730px;
   }
 
   .welcome-panel,
@@ -961,6 +1001,69 @@ footer{
   50%{opacity:1;transform:translateX(0) rotate(180deg)}
   100%{opacity:.25;transform:translateX(-20px) rotate(180deg)}
 }
+
+/* ✅ flèches retour vers la droite */
+.back-help .right-arrow{
+  transform:rotate(0deg) !important;
+  animation:arrowToRight 1s infinite ease-in-out !important;
+}
+
+@keyframes arrowToRight{
+  0%{opacity:.25;transform:translateX(-18px)}
+  50%{opacity:1;transform:translateX(0)}
+  100%{opacity:.25;transform:translateX(18px)}
+}
+
+/* ✅ scroll fluide des cartes */
+main{
+  overflow:visible !important;
+}
+
+.cards-slider{
+  overflow:visible !important;
+}
+
+.welcome-panel{
+  margin-bottom:12px !important;
+}
+
+.login-card{
+  margin-bottom:22px !important;
+}
+
+/* ✅ éviter que la carte soit coincée derrière l'entête */
+@media(max-width:520px){
+  main{
+    padding-top:96px !important;
+    padding-bottom:45px !important;
+  }
+
+  .cards-slider{
+    min-height:820px !important;
+  }
+
+  .login-card{
+    padding-bottom:34px !important;
+  }
+}
+
+.register-btn{
+  background:linear-gradient(145deg,#ffffff,#eaf2ff) !important;
+  color:#10224a !important;
+  border:2px solid rgba(255,255,255,.85) !important;
+  box-shadow:
+    0 14px 30px rgba(10,30,70,.16),
+    inset 0 1px 0 rgba(255,255,255,.95) !important;
+}
+
+.register-btn::before{
+  content:"✨ ";
+}
+
+.register-btn:hover{
+  background:linear-gradient(145deg,#fff6e8,#ffe0b5) !important;
+  transform:translateY(-2px) scale(1.01);
+}
 </style>
 </head>
 
@@ -983,7 +1086,7 @@ footer{
 <header>
 <div class="logo-box malipay-logo">
   <div class="logo-icon">💰</div>
-  <div class="logo-title">MALIPAY</div>
+  <div class="logo-title">MALI WARI</div>
 </div>
 
 <div class="live-box">
@@ -1003,7 +1106,7 @@ SÉCURISÉ
 
     <h1>
       Bienvenue sur <br>
-      <span>MALIPAY</span>
+      <span>MALI WARI</span>
     </h1>
 
     <p>
@@ -1014,7 +1117,7 @@ SÉCURISÉ
     <div class="features">
       <div class="feature">🔐 Connexion protégée</div>
       <div class="feature">💸 Transfert rapide</div>
-      <div class="feature">📜 Historique clair</div>
+      <div class="feature">📜 Historique claire</div>
       <div class="feature">🌍 Multi-devises</div>
     </div>
 
@@ -1074,9 +1177,9 @@ SÉCURISÉ
 
     <div class="back-help" onclick="showWelcomeCard()">
   <div class="swipe-arrows">
-    <span>➜</span>
-    <span>➜</span>
-    <span>➜</span>
+    <span class="right-arrow">➜</span>
+    <span class="right-arrow">➜</span>
+    <span class="right-arrow">➜</span>
   </div>
   <p>Glisse la carte vers la droite pour revenir à la présentation</p>
 </div>
