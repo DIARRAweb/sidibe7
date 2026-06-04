@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 
 <title>MALI WARI — Connexion</title>
 
@@ -596,11 +596,34 @@ footer{
 }
 
 /* =====================================================
-   MALIPAY INDEX — CARTES SLIDE PREMIUM CORRIGÉ
+   MALIPAY INDEX — CARTES SLIDE PREMIUM FINAL
 ===================================================== */
 
+html, body{
+  width:100%;
+  min-height:100%;
+  overflow-x:hidden !important;
+  touch-action:pan-y;
+}
+
+body{
+  display:flex;
+  flex-direction:column;
+}
+
+/* Entête fixe */
+header{
+  position:fixed !important;
+  top:0 !important;
+  left:0 !important;
+  right:0 !important;
+  height:86px !important;
+  z-index:9999 !important;
+}
+
+/* Logo */
 .logo-box.malipay-logo{
-  max-width:calc(100vw - 150px);
+  max-width:calc(100vw - 130px);
   overflow:hidden;
 }
 
@@ -612,31 +635,35 @@ footer{
   color:#10224a;
   font-weight:950;
   letter-spacing:.5px;
-  box-shadow:
-    0 10px 25px rgba(255,106,0,.20),
-    inset 0 1px 0 rgba(255,255,255,.9);
+  box-shadow:0 10px 25px rgba(255,106,0,.20);
   animation:malipayNameMove 4s ease-in-out infinite;
 }
 
 @keyframes malipayNameMove{
   0%,100%{transform:translateX(0) scale(1)}
-  50%{transform:translateX(14px) scale(1.04)}
+  50%{transform:translateX(12px) scale(1.04)}
 }
 
+/* Zone principale compacte */
 main{
+  flex:1;
+  min-height:auto !important;
+  padding:105px 12px 18px !important;
+  display:flex;
+  justify-content:center;
   align-items:flex-start !important;
-  padding-top:125px !important;
 }
 
+/* Slider */
 .cards-slider{
   position:relative;
   width:100%;
-  max-width:520px;
-  min-height:780px;
-  margin:auto;
+  max-width:430px;
+  min-height:720px;
   overflow:visible;
 }
 
+/* Cartes */
 .slide-card{
   position:absolute;
   top:0;
@@ -646,10 +673,7 @@ main{
   pointer-events:none;
   transform:translateX(110%) scale(.94);
   filter:blur(8px);
-  transition:
-    transform 1s ease,
-    opacity .6s ease,
-    filter .6s ease;
+  transition:transform .9s ease, opacity .45s ease, filter .45s ease;
 }
 
 .slide-card.active-card{
@@ -665,31 +689,52 @@ main{
   filter:blur(8px);
 }
 
+/* Cartes jamais coupées */
 .welcome-panel,
 .login-card{
   min-height:auto !important;
   height:auto !important;
+  padding:24px !important;
+  border-radius:32px !important;
   text-align:center;
+  overflow:visible !important;
 }
 
+/* Présentation centrée */
 .welcome-panel{
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:center;
 }
 
 .welcome-panel p{
   text-align:center;
   margin:auto;
+  line-height:1.55 !important;
 }
 
+/* Options */
+.features{
+  width:100%;
+  grid-template-columns:1fr !important;
+  gap:12px !important;
+  margin-top:22px !important;
+}
+
+.feature{
+  min-height:62px !important;
+  padding:13px !important;
+  border-radius:22px !important;
+}
+
+/* Flèches toujours visibles */
 .swipe-help,
 .back-help{
-  margin-top:24px;
-  padding:16px;
+  width:100%;
+  margin-top:22px;
+  padding:15px;
   border-radius:24px;
-  background:rgba(255,255,255,.88);
+  background:rgba(255,255,255,.90);
   border:1px solid rgba(255,255,255,.95);
   color:#10224a;
   text-align:center;
@@ -714,33 +759,59 @@ main{
 
 .swipe-arrows span{
   display:inline-block;
-  animation:arrowLeftMove 1.1s infinite ease-in-out;
+  animation:arrowMove 1.1s infinite ease-in-out;
 }
 
 .swipe-arrows span:nth-child(2){animation-delay:.15s}
 .swipe-arrows span:nth-child(3){animation-delay:.30s}
 
-@keyframes arrowLeftMove{
+@keyframes arrowMove{
   0%{opacity:.25;transform:translateX(20px)}
   50%{opacity:1;transform:translateX(0)}
   100%{opacity:.25;transform:translateX(-20px)}
 }
 
-.swipe-help p{
+.swipe-help p,
+.back-help p{
   margin-top:8px;
   font-size:13px;
   font-weight:950;
-  color:#10224a;
 }
 
+/* Footer collé proprement */
+footer{
+  margin-top:0 !important;
+  padding:14px 10px !important;
+  font-size:13px !important;
+  position:relative;
+}
+
+/* Mobile */
 @media(max-width:520px){
+  header{
+    height:78px !important;
+    padding:12px 15px !important;
+  }
+
+  .logo-icon{
+    width:50px !important;
+    height:50px !important;
+    min-width:50px !important;
+    font-size:26px !important;
+  }
+
+  .logo-title{
+    font-size:22px !important;
+    padding:6px 13px;
+  }
+
   main{
-    padding:105px 12px 40px !important;
+    padding:92px 12px 12px !important;
   }
 
   .cards-slider{
     max-width:100%;
-    min-height:860px;
+    min-height:700px;
   }
 
   .welcome-panel,
@@ -750,56 +821,43 @@ main{
   }
 
   .welcome-panel h1{
-    font-size:34px !important;
+    font-size:31px !important;
     line-height:1.08 !important;
   }
 
   .welcome-panel p{
     font-size:14px !important;
-    line-height:1.55 !important;
-  }
-
-  .features{
-    grid-template-columns:1fr !important;
-    gap:12px !important;
-    width:100%;
   }
 
   .feature{
-    min-height:64px !important;
-    padding:14px !important;
+    min-height:58px !important;
   }
 
-  .logo-box.malipay-logo{
-    max-width:calc(100vw - 35px);
+  .swipe-help,
+  .back-help{
+    padding:14px;
+    border-radius:22px;
   }
 
-  .logo-title{
-    font-size:22px !important;
-    padding:6px 13px;
-  }
-
-  @keyframes malipayNameMove{
-    0%,100%{transform:translateX(0) scale(1)}
-    50%{transform:translateX(8px) scale(1.03)}
+  footer{
+    padding:12px 8px !important;
   }
 }
 
 @media(max-width:360px){
   .cards-slider{
-    min-height:900px;
+    min-height:720px;
   }
 
   .welcome-panel h1{
-    font-size:30px !important;
+    font-size:28px !important;
   }
 
-  .swipe-help,
-  .back-help{
-    padding:13px;
-    border-radius:20px;
+  .logo-title{
+    font-size:19px !important;
   }
 }
+</style>
 </style>
 </head>
 
